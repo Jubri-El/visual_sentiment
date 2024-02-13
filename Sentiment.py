@@ -97,9 +97,13 @@ with dash_2:
                 # Pivot the DataFrame to have product IDs as rows, labels as columns, and counts as values
                 pivot_df = grouped_df.pivot(index='product_id', columns='label', values='counts').fillna(0)
 
-                # st.bar_chart(pivot_df)
+                color_map = {
+                        "Positive": "blue",  # Example: Green for positive
+                        "Negative": "red",    # Example: Red for negative
+                        "Neutral": "grey"     # Example: Grey for neutral
+                }
                 fig = px.bar(grouped_df, x="product_id", y="counts", color="label", barmode="group",
-                height=400, title="Customer Reviews on Products")
+             height=400, title="Customer Reviews on Products", color_discrete_map=color_map)
 
                 # Customize the layout for better readability
                 fig.update_layout(xaxis_title="Product ID",
